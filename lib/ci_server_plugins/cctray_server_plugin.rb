@@ -10,6 +10,7 @@ module Blinky
       server Chicanery::Cctray.new 'blinky build', url, options
 
       counter = 0
+      last_state = nil
       when_run do |current_state|
         puts "********************"
         builds = current_state[:servers]["blinky build"]
@@ -20,9 +21,13 @@ module Blinky
         elsif current_state.has_failure?
           failure!
           puts "FAILURE"
+          `say 'builds failing'` if last_state != 'f'
+          last_state = 'f'
         else
           success!
           puts "SUCCESS"
+          `say 'builds passing'` if last_state != 'p'
+          last_state = 'p'
         end
         counter += 1
       end
