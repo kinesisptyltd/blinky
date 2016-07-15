@@ -16,14 +16,14 @@ module Blinky
       when_run do |current_state|
         puts "********************"
         builds = current_state[:servers]["blinky build"]
-        builds.keys.sort.each {|k| puts "#{k}\t\t#{builds[k][:activity]}\t\t#{builds[k][:last_build_status]}"}
+        #builds.keys.sort.each {|k| puts "#{k}\t\t#{builds[k][:activity]}\t\t#{builds[k][:last_build_status]}"}
         if (counter % 2) == 0 && current_state.building?
           building!
           puts "BUILDING"
         elsif current_state.has_failure?
           failure!
           puts "FAILURE"
-          `afplay #{ROOT_DIR}/ChimeOne.m4a && say 'ALERT ALERT Builds failing'` if last_state != 'f'
+          `afplay #{ROOT_DIR}/ChimeOne.m4a && say 'alert... builds failing... alert... builds failing'` if last_state != 'f'
           last_state = 'f'
         else
           success!
