@@ -5,6 +5,8 @@ require 'pry'
 module Blinky
   module CCTrayServer
     include Chicanery
+
+    ROOT_DIR = File.dirname(__FILE__) + "/../.." 
      
     def watch_cctray_server url, options = {}    
       server Chicanery::Cctray.new 'blinky build', url, options
@@ -21,12 +23,12 @@ module Blinky
         elsif current_state.has_failure?
           failure!
           puts "FAILURE"
-          `say 'builds failing'` if last_state != 'f'
+          `afplay #{ROOT_DIR}/ChimeOne.m4a && say 'ALERT ALERT Builds failing'` if last_state != 'f'
           last_state = 'f'
         else
           success!
           puts "SUCCESS"
-          `say 'builds passing'` if last_state != 'p'
+          `afplay #{ROOT_DIR}/ChimeOne.m4a && say 'Builds passing'` if last_state != 'p'
           last_state = 'p'
         end
         counter += 1
