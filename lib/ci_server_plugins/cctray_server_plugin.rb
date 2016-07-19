@@ -38,7 +38,7 @@ module Blinky
         run_every 2 
       rescue => e
         warning!
-        raise e
+        puts e.inspect
       end
     end
   end
