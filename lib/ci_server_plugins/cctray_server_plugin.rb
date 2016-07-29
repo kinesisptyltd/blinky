@@ -8,12 +8,12 @@ module Blinky
 
     ROOT_DIR = File.dirname(__FILE__) + "/../.." 
 
-    def say(text)
+    def say(text, sound_file)
       now = Time.now
       weekend = now.saturday? || now.sunday?
       in_work_hours = now.hour > 8 && now.hour < 19
       if !weekend && in_work_hours
-        `afplay #{ROOT_DIR}/ChimeOne.m4a && say '#{text}'`
+        `afplay #{ROOT_DIR}/#{sound_file} && say '#{text}'`
       end
     end
      
@@ -33,12 +33,12 @@ module Blinky
           failure!
           puts "FAILURE"
           
-          say("alert... builds failing... alert... builds failing") if last_state != 'f'
+          say("alert... builds failing... alert... builds failing", "build_failed.m4a") if last_state != 'f'
           last_state = 'f'
         else
           success!
           puts "SUCCESS"
-          say("Builds passing") if last_state != 'p'
+          say("Builds passing", "build_passed.m4a") if last_state != 'p'
           last_state = 'p'
         end
         counter += 1
