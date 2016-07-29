@@ -9,8 +9,10 @@ module Blinky
     ROOT_DIR = File.dirname(__FILE__) + "/../.." 
 
     def say(text)
-      hour = Time.now.hour
-      if hour > 8 && hour < 19 
+      now = Time.now
+      weekend = now.saturday? || now.sunday?
+      in_work_hours = now.hour > 8 && now.hour < 19
+      if !weekend && in_work_hours
         `afplay #{ROOT_DIR}/ChimeOne.m4a && say '#{text}'`
       end
     end
