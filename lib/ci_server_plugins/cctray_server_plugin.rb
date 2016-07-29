@@ -7,6 +7,13 @@ module Blinky
     include Chicanery
 
     ROOT_DIR = File.dirname(__FILE__) + "/../.." 
+
+    def say(text)
+      hour = Time.now.hour
+      if hour > 8 && hour < 19 
+        `afplay #{ROOT_DIR}/ChimeOne.m4a && say '#{text}'`
+      end
+    end
      
     def watch_cctray_server url, options = {}    
       server Chicanery::Cctray.new 'blinky build', url, options
@@ -23,12 +30,13 @@ module Blinky
         elsif current_state.has_failure?
           failure!
           puts "FAILURE"
-          `afplay #{ROOT_DIR}/ChimeOne.m4a && say 'alert... builds failing... alert... builds failing'` if last_state != 'f'
+          
+          say("alert... builds failing... alert... builds failing") if last_state != 'f'
           last_state = 'f'
         else
           success!
           puts "SUCCESS"
-          `afplay #{ROOT_DIR}/ChimeOne.m4a && say 'Builds passing'` if last_state != 'p'
+          say("Builds passing") if last_state != 'p'
           last_state = 'p'
         end
         counter += 1
