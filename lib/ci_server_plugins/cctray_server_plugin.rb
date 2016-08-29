@@ -33,12 +33,12 @@ module Blinky
           failure!
           puts "FAILURE"
           
-          say("alert... builds failing... alert... builds failing", "build_failed.m4a") if last_state != 'f'
+          say("alert... builds failing... alert... builds failing", "build_failed.m4a") if last_state && last_state != 'f'
           last_state = 'f'
         else
           success!
           puts "SUCCESS"
-          say("Builds passing", "build_passed.m4a") if last_state != 'p'
+          say("Builds passing", "build_passed.m4a") if last_state && last_state != 'p'
           last_state = 'p'
         end
         counter += 1
