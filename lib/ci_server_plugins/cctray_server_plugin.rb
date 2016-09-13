@@ -11,7 +11,7 @@ module Blinky
     def say(text, sound_file)
       now = Time.now
       weekend = now.saturday? || now.sunday?
-      in_work_hours = now.hour > 8 && now.hour < 19
+      in_work_hours = now.hour > 8 && now.hour < 18
       if !weekend && in_work_hours
         `afplay #{ROOT_DIR}/#{sound_file} && say '#{text}'`
       end
