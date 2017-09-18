@@ -19,7 +19,8 @@ Gem::Specification.new do |gem|
   
   gem.add_dependency "libusb", "~> 0.2.2"
   gem.add_dependency "chicanery", "~>0.1.0"
-  
+  gem.add_dependency "dotenv"
+
   gem.add_development_dependency "rspec", "~> 2.11.0"
   gem.add_development_dependency "rake",  "~> 10.0.2"
 end

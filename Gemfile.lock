@@ -1,20 +1,26 @@
 PATH
   remote: .
   specs:
-    blinky (0.0.11)
+    blinky (0.0.12)
       chicanery (~> 0.1.0)
+      dotenv
       libusb (~> 0.2.2)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    chicanery (0.1.0)
+    chicanery (0.1.8)
+      colorize (~> 0)
       nokogiri (~> 1)
+    colorize (0.8.1)
     diff-lcs (1.1.3)
-    ffi (1.3.1)
+    dotenv (2.2.1)
+    ffi (1.9.18)
     libusb (0.2.2)
       ffi (>= 1.0)
-    nokogiri (1.5.6)
+    mini_portile2 (2.2.0)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
     rake (10.0.3)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
@@ -32,3 +38,6 @@ DEPENDENCIES
   blinky!
   rake (~> 10.0.2)
   rspec (~> 2.11.0)
+
+BUNDLED WITH
+   1.15.4
