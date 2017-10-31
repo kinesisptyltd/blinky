@@ -1,3 +1,19 @@
+# Run on your own machine:
+
+* Install Gems
+
+    bundle install
+
+* Update `buildlight.plist` with your home path
+* Copy the plist to the right location
+
+    cp buildlight.plist ~/Library/LaunchAgents/buildlight.plist
+
+* Update `run_service.sh` with your home directory
+* Install the script
+
+    launchctl load -w ~/Library/LaunchAgents/buildlight.plist
+
 = blinky
 
 blinky helps you see the light
